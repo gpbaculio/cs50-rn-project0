@@ -106,14 +106,41 @@ function getUncheckedCount() {
   return Array.from(document.querySelectorAll(`.${classNames.TODO_CHECKBOX}`)).filter(({ checked }) => !checked).length
 }
 
-function filterTodos(filter = 'all') {
-
-
-
-  console.log('filter!', filter)
-  // const todoCheckboxes = Array.from(document.querySelectorAll(`.${classNames.TODO_CHECKBOX}`))
-  // if(filter==='active') {
-  //   todoCheckboxes.forEach()
+function handleFilter(filter = 'all') {
+  const filters = Array.from(document.querySelectorAll('.filter'))
+  filters.forEach(currentFilter => {
+    if (currentFilter.id !== filter) {
+      currentFilter.classList.remove('selected')
+    } else {
+      currentFilter.classList.add('selected')
+    }
+  })
+  const checkboxes = Array.from(document.querySelectorAll(`.${classNames.TODO_CHECKBOX}`));
+  // const checkboxes = Array.from(document.querySelectorAll(`.${classNames.TODO_CHECKBOX}`))
+  if (filter === 'all') {
+    checkboxes.forEach(checkbox => {
+      const liParent = checkbox.parentNode.parentNode.parentNode;
+      liParent.style.display = 'flex'
+    })
+  } else if (filter === 'active') {
+    checkboxes.forEach(checkbox => {
+      const liParent = checkbox.parentNode.parentNode.parentNode;
+      if (!checkbox.checked) {
+        liParent.style.display = 'flex'
+      } else {
+        liParent.style.display = 'none'
+      }
+    })
+  } else if (filter === 'completed') {
+    checkboxes.forEach(checkbox => {
+      const liParent = checkbox.parentNode.parentNode.parentNode;
+      if (!checkbox.checked) {
+        liParent.style.display = 'none'
+      } else {
+        liParent.style.display = 'flex'
+      }
+    })
+  }
   // }
   // if (!allSelected) {
   //   chekboxInputs.forEach(function (input) {

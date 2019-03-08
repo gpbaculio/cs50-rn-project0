@@ -16,9 +16,9 @@
     <button class="button center" onClick="newTodo()">New TODO</button>
     <div id="filters">
       <div class="filters-container">
-        <div class="all selected">All</div>
-        <div class="active">Active</div>
-        <div class="completed">Completed</div>
+        <div id="all" class="filter selected" onClick="handleFilter('all')">All</div>
+        <div id="active" class="filter" onClick="handleFilter('active')">Active</div>
+        <div id="completed" class="filter" onClick="handleFilter('completed')">Completed</div>
       </div>
     </div>
     <ul id="todo-list" class="todo-list"></ul>

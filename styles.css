@@ -94,18 +94,14 @@ ul {
   justify-content: center;
   margin-top: 30px;
 }
+
 .filters-container {
   display: flex;
   justify-content: space-between;
   width: 40%;
 }
-.all {
-  padding: 4px 12px;
-}
-.active {
-  padding: 4px 12px;
-}
-.completed {
+
+.filter {
   padding: 4px 12px;
 }
 
@@ -115,7 +111,7 @@ ul {
   font-weight: bold;
 }
 
-.all:hover:not(.selected), .active:hover:not(.selected), .completed:hover:not(.selected) {
+.filter:hover:not(.selected) {
   border: solid #FF8080 1px;
   border-radius: 1px;
   padding: 3px 11px;
