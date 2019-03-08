@@ -53,10 +53,25 @@ ul {
   align-items: center;
   justify-content: flex-end;
   flex-direction: row-reverse;
+  margin-right: 20px;
 }
 
 .todo-delete {
-  margin: 10px;
+  margin: 10px 0 10px 10px;
+  color: red;
+}
+.todo-delete:hover {
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.todo-edit {
+  margin: 10px 0 10px 10px;
+  color: blue;
+}
+.todo-edit:hover {
+  text-decoration: underline;
+  cursor: pointer;
 }
 
 .todo-checkbox {
@@ -72,4 +87,46 @@ ul {
 
 .todo-container:first-of-type {
   border-top: 1px solid #333;
+}
+
+#filters {
+  display: none;
+  justify-content: center;
+  margin-top: 30px;
+}
+.filters-container {
+  display: flex;
+  justify-content: space-between;
+  width: 40%;
+}
+.all {
+  padding: 4px 12px;
+}
+.active {
+  padding: 4px 12px;
+}
+.completed {
+  padding: 4px 12px;
+}
+
+.selected { 
+  border: solid #FF8080 1px;
+  border-radius: 1px;
+  font-weight: bold;
+}
+
+.all:hover:not(.selected), .active:hover:not(.selected), .completed:hover:not(.selected) {
+  border: solid #FF8080 1px;
+  border-radius: 1px;
+  padding: 3px 11px;
+}
+
+.data-container {
+  width: 50%;
+  display: flex;
+  justify-content: space-between;
+}
+
+.operators {
+  display: flex
 }
