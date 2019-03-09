@@ -12,10 +12,13 @@ const itemCountSpan = document.getElementById('item-count');
 const uncheckedCountSpan = document.getElementById('unchecked-count');
 
 
+let activeFilter = 'all'
+
 let id = 0;
 function newTodo() {
   const text = prompt('What needs to be done?');
   if (text) {
+    console.log('activeFilter = ', activeFilter)
     id += 1;
     const todoId = `todo-${id}`;
     const textId = `text-${id}`;
@@ -61,6 +64,9 @@ function newTodo() {
     dataContainer.append(todoLabel, operators)
     todoItem.append(dataContainer);
     //insert on top
+    if (activeFilter === 'completed') {
+      todoItem.style.display = 'none'
+    }
     list.insertBefore(todoItem, document.querySelector("ul > li"));
     updateCounts()
   } else {
@@ -99,6 +105,14 @@ function handleCheck(textId, checkboxId) {
   } else {
     text.style.textDecoration = 'none';
   }
+  if (activeFilter === 'active') {
+    const liParent = text.parentNode.parentNode
+    liParent.style.display = 'none'
+  }
+  if (activeFilter === 'completed') {
+    const liParent = text.parentNode.parentNode
+    liParent.style.display = 'none'
+  }
   updateCounts()
 }
 
@@ -107,6 +121,7 @@ function getUncheckedCount() {
 }
 
 function handleFilter(filter = 'all') {
+  activeFilter = filter
   const filters = Array.from(document.querySelectorAll('.filter'))
   filters.forEach(currentFilter => {
     if (currentFilter.id !== filter) {
@@ -116,7 +131,6 @@ function handleFilter(filter = 'all') {
     }
   })
   const checkboxes = Array.from(document.querySelectorAll(`.${classNames.TODO_CHECKBOX}`));
-  // const checkboxes = Array.from(document.querySelectorAll(`.${classNames.TODO_CHECKBOX}`))
   if (filter === 'all') {
     checkboxes.forEach(checkbox => {
       const liParent = checkbox.parentNode.parentNode.parentNode;
