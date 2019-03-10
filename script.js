@@ -25,6 +25,7 @@ function newTodo() {
     const checkboxId = `checkbox-${id}`;
     const deleteId = `delete-${id}`;
     const editId = `edit-${id}`;
+    const dataId = `data-${id}`;
     // li
     const todoItem = document.createElement('li');
     todoItem.setAttribute('class', classNames.TODO_ITEM);
@@ -32,6 +33,7 @@ function newTodo() {
     // container
     const dataContainer = document.createElement('div');
     dataContainer.setAttribute('class', 'data-container');
+    dataContainer.setAttribute('id', dataId);
     // operators
     const operators = document.createElement('div');
     operators.setAttribute('class', 'operators');
@@ -48,17 +50,18 @@ function newTodo() {
     todoCheckbox.setAttribute('onclick', `handleCheck('${textId}', '${checkboxId}')`);
     // nest checkbox on label
     todoLabel.appendChild(todoCheckbox);
+    //edit
+    const toggleEdit = document.createElement('span');
+    toggleEdit.setAttribute('class', classNames.TODO_EDIT);
+    toggleEdit.setAttribute('id', editId)
+    toggleEdit.innerHTML = 'edit';
+    toggleEdit.setAttribute('onclick', `toggleEdit('${dataId}')`);
     // delete
     const deleteTodo = document.createElement('span');
     deleteTodo.setAttribute('class', classNames.TODO_DELETE);
     deleteTodo.setAttribute('id', deleteId)
     deleteTodo.innerHTML = 'delete';
     deleteTodo.setAttribute('onclick', `deleteTodo('${todoId}')`);
-    //edit
-    const toggleEdit = document.createElement('span');
-    toggleEdit.setAttribute('class', classNames.TODO_EDIT);
-    toggleEdit.setAttribute('id', editId)
-    toggleEdit.innerHTML = 'edit';
     //append item
     operators.append(toggleEdit, deleteTodo)
     dataContainer.append(todoLabel, operators)
@@ -73,6 +76,29 @@ function newTodo() {
     alert('Please enter a valid todo');
   }
   renderFilters()
+}
+
+function toggleEdit(dataId) {
+  const dataContainer = document.getElementById(dataId)
+  let newText = dataContainer.firstElementChild.innerText;
+  const labelText = dataContainer.firstElementChild.firstChild
+  labelText.nodeValue = ''
+  const editInput = document.createElement('input');
+  editInput.addEventListener('input', e => {
+    newText = e.target.value;
+  })
+  editInput.type = 'text'
+  editInput.value = newText
+  dataContainer.firstElementChild.insertBefore(editInput, dataContainer.firstElementChild.firstChild)
+  const saveEdit = dataContainer.lastElementChild.firstElementChild
+  saveEdit.innerText = 'save'
+  saveEdit.style.color = 'green'
+  saveEdit.onclick = () => {
+    labelText.nodeValue = newText
+    dataContainer.firstElementChild.removeChild(editInput)
+    saveEdit.innerText = 'edit'
+    saveEdit.style.color = 'blue'
+  }
 }
 
 function renderFilters() {
