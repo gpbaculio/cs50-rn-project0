@@ -43,8 +43,7 @@ ul {
 
 .todo-list {
   flex: 1 1 0;
-  margin-top: 20px;
-  padding: 20px;
+  padding: 0 20px 20px 20px;
   overflow-y: auto;
 }
 
@@ -85,14 +84,12 @@ ul {
   justify-content: center;
 }
 
-.todo-container:first-of-type {
-  border-top: 1px solid #333;
-}
-
 #filters {
   display: none;
   justify-content: center;
-  margin-top: 30px;
+  margin:20px 20px 0 20px;
+  padding: 20px;
+  border-bottom: 1px solid #333;
 }
 
 .filters-container {
@@ -103,6 +100,7 @@ ul {
 
 .filter {
   padding: 4px 12px;
+  cursor: pointer;
 }
 
 .selected { 
