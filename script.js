@@ -82,6 +82,8 @@ function toggleEdit(dataId) {
   const dataContainer = document.getElementById(dataId)
   let newText = dataContainer.firstElementChild.innerText;
   const labelText = dataContainer.firstElementChild.firstChild
+  const prevText = labelText.nodeValue
+  console.log('prevText = ', prevText)
   labelText.nodeValue = ''
   const editInput = document.createElement('input');
   editInput.addEventListener('input', e => {
@@ -93,11 +95,17 @@ function toggleEdit(dataId) {
   const saveEdit = dataContainer.lastElementChild.firstElementChild
   saveEdit.innerText = 'save'
   saveEdit.style.color = 'green'
-  saveEdit.onclick = () => {
-    labelText.nodeValue = newText
+  saveEdit.onclick = function () {
+    if (newText) {
+      labelText.nodeValue = newText
+    } else {
+      alert('Please enter a valid todo')
+      labelText.nodeValue = prevText;
+    }
     dataContainer.firstElementChild.removeChild(editInput)
     saveEdit.innerText = 'edit'
     saveEdit.style.color = 'blue'
+    saveEdit.setAttribute('onclick', `toggleEdit('${dataId}')`);
   }
 }
 
