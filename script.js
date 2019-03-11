@@ -18,7 +18,6 @@ let id = 0;
 function newTodo() {
   const text = prompt('What needs to be done?');
   if (text) {
-    console.log('activeFilter = ', activeFilter)
     id += 1;
     const todoId = `todo-${id}`;
     const textId = `text-${id}`;
@@ -83,7 +82,6 @@ function toggleEdit(dataId) {
   let newText = dataContainer.firstElementChild.innerText;
   const labelText = dataContainer.firstElementChild.firstChild
   const prevText = labelText.nodeValue
-  console.log('prevText = ', prevText)
   labelText.nodeValue = ''
   const editInput = document.createElement('input');
   editInput.addEventListener('input', e => {
