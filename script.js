@@ -1,4 +1,3 @@
-// @ts-nocheck
 const classNames = {
   TODO_ITEM: 'todo-container',
   TODO_CHECKBOX: 'todo-checkbox',
@@ -50,19 +49,19 @@ function newTodo() {
     // nest checkbox on label
     todoLabel.appendChild(todoCheckbox);
     //edit
-    const toggleEdit = document.createElement('span');
-    toggleEdit.setAttribute('class', classNames.TODO_EDIT);
-    toggleEdit.setAttribute('id', editId)
-    toggleEdit.innerHTML = 'edit';
-    toggleEdit.setAttribute('onclick', `toggleEdit('${dataId}')`);
+    const toggleEditElm = document.createElement('span');
+    toggleEditElm.setAttribute('class', classNames.TODO_EDIT);
+    toggleEditElm.setAttribute('id', editId)
+    toggleEditElm.innerHTML = 'edit';
+    toggleEditElm.setAttribute('onclick', `toggleEdit('${dataId}')`);
     // delete
-    const deleteTodo = document.createElement('span');
-    deleteTodo.setAttribute('class', classNames.TODO_DELETE);
-    deleteTodo.setAttribute('id', deleteId)
-    deleteTodo.innerHTML = 'delete';
-    deleteTodo.setAttribute('onclick', `deleteTodo('${todoId}')`);
+    const deleteTodoElm = document.createElement('span');
+    deleteTodoElm.setAttribute('class', classNames.TODO_DELETE);
+    deleteTodoElm.setAttribute('id', deleteId)
+    deleteTodoElm.innerHTML = 'delete';
+    deleteTodoElm.setAttribute('onclick', `deleteTodo('${todoId}')`);
     //append item
-    operators.append(toggleEdit, deleteTodo)
+    operators.append(toggleEditElm, deleteTodoElm)
     dataContainer.append(todoLabel, operators)
     todoItem.append(dataContainer);
     //insert on top
@@ -81,9 +80,12 @@ function toggleEdit(dataId) {
   const dataContainer = document.getElementById(dataId)
   let newText = dataContainer.firstElementChild.innerText;
   const labelText = dataContainer.firstElementChild.firstChild
+  console.log('dataContainer.firstElementChild ', dataContainer.firstElementChild)
+  console.log('labelText ', labelText)
   const prevText = labelText.nodeValue
   labelText.nodeValue = ''
   const editInput = document.createElement('input');
+  editInput.setAttribute('autofocus', true)
   editInput.addEventListener('input', e => {
     newText = e.target.value;
   })

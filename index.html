@@ -1,29 +1,26 @@
 <!DOCTYPE html>
 <html>
-
-<head>
-  <title>TODO App</title>
-  <link rel="stylesheet" type="text/css" href="./styles.css" />
-</head>
-
-<body>
-  <div class="container center">
-    <h1 class="center title">My TODO App</h1>
-    <div class="flow-right controls">
-      <span>Item count: <span id="item-count">0</span></span>
-      <span>Unchecked count: <span id="unchecked-count">0</span></span>
-    </div>
-    <button class="button center" onClick="newTodo()">New TODO</button>
-    <div id="filters">
-      <div class="filters-container">
-        <div id="all" class="filter selected" onClick="handleFilter('all')">All</div>
-        <div id="active" class="filter" onClick="handleFilter('active')">Active</div>
-        <div id="completed" class="filter" onClick="handleFilter('completed')">Completed</div>
+  <head>
+    <title>TODO App</title>
+    <link rel="stylesheet" type="text/css" href="./styles.css" />
+  </head>
+  <body>
+    <div class="container center">
+      <h1 class="center title">My TODO App</h1>
+      <div class="flow-right controls">
+        <span>Item count: <span id="item-count">0</span></span>
+        <span>Unchecked count: <span id="unchecked-count">0</span></span>
       </div>
+      <button class="button center" onClick="newTodo()">New TODO</button>
+      <div id="filters">
+        <div class="filters-container">
+          <div id="all" class="filter selected" onClick="handleFilter('all')">All</div>
+          <div id="active" class="filter" onClick="handleFilter('active')">Active</div>
+          <div id="completed" class="filter" onClick="handleFilter('completed')">Completed</div>
+        </div>
+      </div>
+      <ul id="todo-list" class="todo-list"></ul>
     </div>
-    <ul id="todo-list" class="todo-list"></ul>
-  </div>
-  <script src="./script.js"></script>
-</body>
-
+    <script src="./script.js"></script>
+  </body>
 </html>
